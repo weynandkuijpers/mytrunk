@@ -1,0 +1,11 @@
+#!/usr/bin/python
+
+# First python script
+
+import sys           # Load a library module
+
+print(sys.platform)     # print system information
+print(2 ** 100)         # Raise 2 to the power of 100
+
+x = 'Spam!'
+print(x * 8)            # print a string mulitple times
