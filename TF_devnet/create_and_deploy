@@ -1,5 +1,13 @@
 #!/bin/bash
 
+# chck if a user.seed file exists - if not generate it.
+FILE="./user.seed"
+if [ -f $FILE ]; then
+   echo "The file '$FILE' exists. Nothing to do."
+else
+   tfuser id
+fi
+
 # Create a network to connect reserved capacity containers on
 tfuser generate network create --name my_network --cidr 172.20.0.0/16 > network.json
 
@@ -59,12 +67,12 @@ tfuser provision --seed user.seed --duration 10m  \
 # actual provisioning - container 1
 tfuser provision --seed user.seed --duration 10m  \
 --node qzuTJJVd5boi6Uyoco1WWnSgzTb7q8uN79AjBT9x9N3 --schema container1.json
-# actual provisioning - container 1
+# actual provisioning - container 2
 tfuser provision --seed user.seed --duration 10m  \
 --node Gr8NxBLHe7yjSsnSTgTqGr7BHbyAUVPJqs8fnudEE4Sf --schema container2.json
-# actual provisioning - container 1
+# actual provisioning - container 3
 tfuser provision --seed user.seed --duration 10m  \
 --node 48YmkyvfoXnXqEojpJieMfFPnCv2enEuqEJcmhvkcdAk --schema container3.json
-# actual provisioning - container 1
+# actual provisioning - container 4
 tfuser provision --seed user.seed --duration 10m  \
 --node BpTAry1Na2s1J8RAHNyDsbvaBSM3FjR4gMXEKga3UPbs --schema container4.json
