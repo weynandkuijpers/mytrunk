@@ -7,13 +7,22 @@ tfuser generate network create --name my_network --cidr 172.20.0.0/16 > network.
 # add nodes to the network for future container deployments
 tfuser generate --schema network.json network add-node --node qzuTJJVd5boi6Uyoco1WWnSgzTb7q8uN79AjBT9x9N3 --subnet 172.20.1.0/24 --port 12345
 tfuser generate --schema network.json network add-node --node Gr8NxBLHe7yjSsnSTgTqGr7BHbyAUVPJqs8fnudEE4Sf --subnet 172.20.2.0/24 --port 12346
-tfuser generate --schema network.json network add-node --node 48YmkyvfoXnXqEojpJieMfFPnCv2enEuqEJcmhvkcdAk --subnet 172.20.3.0/24 --port 12347 --force-hidden
+tfuser generate --schema network.json network add-node --node 48YmkyvfoXnXqEojpJieMfFPnCv2enEuqEJcmhvkcdAk --subnet 172.20.3.0/24 --port 12347
 tfuser generate --schema network.json network add-node --node BpTAry1Na2s1J8RAHNyDsbvaBSM3FjR4gMXEKga3UPbs --subnet 172.20.4.0/24 --port 12348
 
 # So now I have a json file with the basic networks information and some nodes in which I want to deploy containers.
 
 # Add Gateway in and out of this virtual network
 tfuser generate --schema network.json network add-access --node qzuTJJVd5boi6Uyoco1WWnSgzTb7q8uN79AjBT9x9N3 --ip4 --subnet 10.1.0.0/24 > wgTF.conf
+
+# Copy the wireguard key pair to the wireguard directory
+echo "Stopping existing Wireguard configuration"
+sudo wg-quick down wgTF
+echo "Move new configuration to systems config file"
+sudo mv ./wgTF.conf /etc/wireguard/
+echo "Starting new Wireguard tunnel"
+sudo wg-quick up wgTF
+
 
 # node qzuTJJVd5boi6Uyoco1WWnSgzTb7q8uN79AjBT9x9N3 is both a node which is conencted to the virtual network as well
 # the node that will connect (wireguard) to my laptop.
@@ -51,23 +60,25 @@ tfuser generate --schema ubuntu.json container \
 --entrypoint /bin/bash \
 --network my_network \ > container4.json
 
+# stop executing here
+#exit
 
 # actual provisioning - network
-tfuser provision --seed user.seed --duration 10m  \
+tfuser provision --seed user.seed --duration 5m  \
 --node qzuTJJVd5boi6Uyoco1WWnSgzTb7q8uN79AjBT9x9N3 \
 --node Gr8NxBLHe7yjSsnSTgTqGr7BHbyAUVPJqs8fnudEE4Sf \
 --node 48YmkyvfoXnXqEojpJieMfFPnCv2enEuqEJcmhvkcdAk \
 --node BpTAry1Na2s1J8RAHNyDsbvaBSM3FjR4gMXEKga3UPbs --schema network.json
 
 # actual provisioning - container 1
-tfuser provision --seed user.seed --duration 2m  \
+tfuser provision --seed user.seed --duration 5m  \
 --node qzuTJJVd5boi6Uyoco1WWnSgzTb7q8uN79AjBT9x9N3 --schema container1.json
-# actual provisioning - container 1
-tfuser provision --seed user.seed --duration 2m  \
+# actual provisioning - container 2
+tfuser provision --seed user.seed --duration 5m  \
 --node Gr8NxBLHe7yjSsnSTgTqGr7BHbyAUVPJqs8fnudEE4Sf --schema container2.json
-# actual provisioning - container 1
-tfuser provision --seed user.seed --duration 2m  \
+# actual provisioning - container 3
+tfuser provision --seed user.seed --duration 5m  \
 --node 48YmkyvfoXnXqEojpJieMfFPnCv2enEuqEJcmhvkcdAk --schema container3.json
-# actual provisioning - container 1
-tfuser provision --seed user.seed --duration 2m  \
+# actual provisioning - container 4
+tfuser provision --seed user.seed --duration 5m  \
 --node BpTAry1Na2s1J8RAHNyDsbvaBSM3FjR4gMXEKga3UPbs --schema container4.json
