@@ -1,0 +1,73 @@
+#!/bin/bash
+
+# Create a network to connect reserved capacity containers on
+tfuser generate network create --name my_network --cidr 172.20.0.0/16 > network.json
+
+# So now I have a json file with the basis networks information in it called network.json
+# add nodes to the network for future container deployments
+tfuser generate --schema network.json network add-node --node qzuTJJVd5boi6Uyoco1WWnSgzTb7q8uN79AjBT9x9N3 --subnet 172.20.1.0/24 --port 12345
+tfuser generate --schema network.json network add-node --node Gr8NxBLHe7yjSsnSTgTqGr7BHbyAUVPJqs8fnudEE4Sf --subnet 172.20.2.0/24 --port 12346
+tfuser generate --schema network.json network add-node --node 48YmkyvfoXnXqEojpJieMfFPnCv2enEuqEJcmhvkcdAk --subnet 172.20.3.0/24 --port 12347 --force-hidden
+tfuser generate --schema network.json network add-node --node BpTAry1Na2s1J8RAHNyDsbvaBSM3FjR4gMXEKga3UPbs --subnet 172.20.4.0/24 --port 12348
+
+# So now I have a json file with the basic networks information and some nodes in which I want to deploy containers.
+
+# Add Gateway in and out of this virtual network
+tfuser generate --schema network.json network add-access --node qzuTJJVd5boi6Uyoco1WWnSgzTb7q8uN79AjBT9x9N3 --ip4 --subnet 10.1.0.0/24 > wgTF.conf
+
+# node qzuTJJVd5boi6Uyoco1WWnSgzTb7q8uN79AjBT9x9N3 is both a node which is conencted to the virtual network as well
+# the node that will connect (wireguard) to my laptop.
+
+# if just to test and create setups - we do not have to deploy.
+# exit
+
+# So now I want to deploy containers on the nodes that I have cinnected by my network.
+
+tfuser generate --schema ubuntu.json container \
+--flist https://hub.grid.tf/tf-official-apps/ubuntu-bionic-build.flist \
+--corex \
+--ip 172.20.1.1 \
+--entrypoint /bin/bash \
+--network my_network \ > container1.json
+
+tfuser generate --schema ubuntu.json container \
+--flist https://hub.grid.tf/tf-official-apps/ubuntu-bionic-build.flist \
+--corex \
+--ip 172.20.2.1 \
+--entrypoint /bin/bash \
+--network my_network \ > container2.json
+
+tfuser generate --schema ubuntu.json container \
+--flist https://hub.grid.tf/tf-official-apps/ubuntu-bionic-build.flist \
+--corex \
+--ip 172.20.3.1 \
+--entrypoint /bin/bash \
+--network my_network \ > container3.json
+
+tfuser generate --schema ubuntu.json container \
+--flist https://hub.grid.tf/tf-official-apps/ubuntu-bionic-build.flist \
+--corex \
+--ip 172.20.4.1 \
+--entrypoint /bin/bash \
+--network my_network \ > container4.json
+
+
+# actual provisioning - network
+tfuser provision --seed user.seed --duration 10m  \
+--node qzuTJJVd5boi6Uyoco1WWnSgzTb7q8uN79AjBT9x9N3 \
+--node Gr8NxBLHe7yjSsnSTgTqGr7BHbyAUVPJqs8fnudEE4Sf \
+--node 48YmkyvfoXnXqEojpJieMfFPnCv2enEuqEJcmhvkcdAk \
+--node BpTAry1Na2s1J8RAHNyDsbvaBSM3FjR4gMXEKga3UPbs --schema network.json
+
+# actual provisioning - container 1
+tfuser provision --seed user.seed --duration 2m  \
+--node qzuTJJVd5boi6Uyoco1WWnSgzTb7q8uN79AjBT9x9N3 --schema container1.json
+# actual provisioning - container 1
+tfuser provision --seed user.seed --duration 2m  \
+--node Gr8NxBLHe7yjSsnSTgTqGr7BHbyAUVPJqs8fnudEE4Sf --schema container2.json
+# actual provisioning - container 1
+tfuser provision --seed user.seed --duration 2m  \
+--node 48YmkyvfoXnXqEojpJieMfFPnCv2enEuqEJcmhvkcdAk --schema container3.json
+# actual provisioning - container 1
+tfuser provision --seed user.seed --duration 2m  \
+--node BpTAry1Na2s1J8RAHNyDsbvaBSM3FjR4gMXEKga3UPbs --schema container4.json
