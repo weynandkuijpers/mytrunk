@@ -30,28 +30,29 @@ sudo wg-quick up wgTF
 # So now I want to deploy containers on the nodes that I have cinnected by my network.
 
 tfuser generate --schema ubuntu.json container \
---flist https://hub.grid.tf/tf-official-apps/ubuntu-bionic-build.flist \
---ip 172.20.1.1 \
+--flist https://hub.grid.tf/weynand/alexwhen-docker-2048-latest.flist \
+--ip 172.20.1.9 \
+--entrypoint /bin/sh \
 --network my_network \ > container1.json
 
 tfuser generate --schema ubuntu.json container \
 --flist https://hub.grid.tf/tf-official-apps/ubuntu-bionic-build.flist \
 --corex \
---ip 172.20.2.1 \
+--ip 172.20.2.9 \
 --entrypoint /bin/bash \
 --network my_network \ > container2.json
 
 tfuser generate --schema ubuntu.json container \
 --flist https://hub.grid.tf/tf-official-apps/ubuntu-bionic-build.flist \
 --corex \
---ip 172.20.3.1 \
+--ip 172.20.3.9 \
 --entrypoint /bin/bash \
 --network my_network \ > container3.json
 
 tfuser generate --schema ubuntu.json container \
 --flist https://hub.grid.tf/tf-official-apps/ubuntu-bionic-build.flist \
 --corex \
---ip 172.20.4.1 \
+--ip 172.20.4.9 \
 --entrypoint /bin/bash \
 --network my_network \ > container4.json
 
@@ -74,3 +75,9 @@ tfuser provision --seed user.seed --duration 5m  \
 # actual provisioning - container 4
 tfuser provision --seed user.seed --duration 5m  \
 --node BpTAry1Na2s1J8RAHNyDsbvaBSM3FjR4gMXEKga3UPbs --schema container4.json
+
+##
+# to look at the deplyed stuff:  SEED_PATH=~weynand/opt/mytrunk/tf_grid_demo/user.seed
+# end then use tfuser live
+# connect to the container by doing http://172.20.3.9:7681
+# start shell on the container by doing http://172.20.3.9:7681/api/process/start?arg[]=/bin/bash

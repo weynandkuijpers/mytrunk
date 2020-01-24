@@ -2,19 +2,23 @@ digraph  {
 	
 	n3[label="48YmkyvfoXnXqEojpJieMfFPnCv2enEuqEJcmhvkcdAk\n172.20.3.0/24",shape="box"];
 	n4[label="BpTAry1Na2s1J8RAHNyDsbvaBSM3FjR4gMXEKga3UPbs\n172.20.4.0/24",shape="box"];
+	n5[color="green",label="External network\n10.1.0.0/24",shape="box",style="dashed"];
 	n2[label="Gr8NxBLHe7yjSsnSTgTqGr7BHbyAUVPJqs8fnudEE4Sf\n172.20.2.0/24",shape="box"];
 	n1[label="qzuTJJVd5boi6Uyoco1WWnSgzTb7q8uN79AjBT9x9N3\n172.20.1.0/24",shape="box"];
-	n3->n1[label="172.20.1.0/24"];
+	n3->n1[label="172.20.1.0/24\n10.1.0.0/24"];
 	n3->n2[label="172.20.2.0/24"];
 	n3->n4[label="172.20.4.0/24"];
-	n4->n1[label="172.20.1.0/24"];
+	n4->n1[label="172.20.1.0/24\n10.1.0.0/24"];
 	n4->n2[label="172.20.2.0/24"];
 	n4->n3[label="172.20.3.0/24"];
-	n2->n1[label="172.20.1.0/24"];
+	n5->n1[label="172.20.0.0/16"];
+	n2->n1[label="172.20.1.0/24\n10.1.0.0/24"];
 	n2->n3[label="172.20.3.0/24"];
 	n2->n4[label="172.20.4.0/24"];
 	n1->n2[label="172.20.2.0/24"];
 	n1->n3[label="172.20.3.0/24"];
 	n1->n4[label="172.20.4.0/24"];
+	n1->n5[color="blue",label="10.1.0.0/24",style="dashed"];
+	{rank=same; n5;};
 	
 }
