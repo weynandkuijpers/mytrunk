@@ -16,21 +16,23 @@ tfuser generate --schema network.json network add-access --node qzuTJJVd5boi6Uyo
 # Generate/Update a .dot file to display the network
 tfuser generate --schema network.json network graph
 
-# Copy the wireguard key pair to the wireguard directory
-echo "Stopping existing Wireguard configuration"
+# Copy the wireguard key pair to the wireguard directory if on is up and running
+
+echo "Stopping existing Wireguard configuration for access"
 sudo wg-quick down wgTF
-echo "Move new configuration to systems config file"
+echo "Move new configuration to the system wide config file location"
 sudo mv ./wgTF.conf /etc/wireguard/
 echo "Starting new Wireguard tunnel"
 sudo wg-quick up wgTF
 
-# node qzuTJJVd5boi6Uyoco1WWnSgzTb7q8uN79AjBT9x9N3 is both a node which is conencted to the virtual network as well
+# node qzuTJJVd5boi6Uyoco1WWnSgzTb7q8uN79AjBT9x9N3 is both a node which is connected to the virtual network as well
 # the node that will connect (wireguard) to my laptop.
 
 # So now I want to deploy containers on the nodes that I have cinnected by my network.
 
 tfuser generate --schema ubuntu.json container \
---flist https://hub.grid.tf/weynand/alexwhen-docker-2048-latest.flist \
+--flist https://hub.grid.tf/tf-official-apps/ubuntu-bionic-build.flist \
+--corex \
 --ip 172.20.1.9 \
 --entrypoint /bin/sh \
 --network my_network \ > container1.json
@@ -62,6 +64,8 @@ tfuser provision --seed user.seed --duration 5m  \
 --node Gr8NxBLHe7yjSsnSTgTqGr7BHbyAUVPJqs8fnudEE4Sf \
 --node 48YmkyvfoXnXqEojpJieMfFPnCv2enEuqEJcmhvkcdAk \
 --node BpTAry1Na2s1J8RAHNyDsbvaBSM3FjR4gMXEKga3UPbs --schema network.json
+
+# for testing purposes stop here
 
 # actual provisioning - container 1
 tfuser provision --seed user.seed --duration 5m  \
