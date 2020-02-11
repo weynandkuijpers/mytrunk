@@ -12,6 +12,7 @@ tfuser generate --schema network.json network add-node --node BpTAry1Na2s1J8RAHN
 
 # Add Gateway in and out of this virtual network
 tfuser generate --schema network.json network add-access --node qzuTJJVd5boi6Uyoco1WWnSgzTb7q8uN79AjBT9x9N3 --ip4 --subnet 10.1.0.0/24 > wgTF.conf
+tfuser generate --schema network.json network add-access --node qzuTJJVd5boi6Uyoco1WWnSgzTb7q8uN79AjBT9x9N3 --ip4 --subnet 11.1.0.0/24 > wg2TF.conf
 
 # Generate/Update a .dot file to display the network
 tfuser generate --schema network.json network graph
