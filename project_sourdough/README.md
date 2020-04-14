@@ -13,5 +13,7 @@ Activity Added 50 grams of flour and 50 grams of water.
 Update: Early morning and overnight the first evidence of a lot of activity.  About 50% volume increase (see sticker).
 
 Pictures:
-![](images/day3_1.jpg)
-![](images/day3_2.jpg)
+
+
+<img src="images/day3_1.jpg" width="400" alt="Homemade">
+<img src="images/day3_2.jpg" width="400" alt="Homemade">
