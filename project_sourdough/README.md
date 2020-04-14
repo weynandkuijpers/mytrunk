@@ -10,7 +10,7 @@ Update: Not much activity - one or two bubbles ar the surface of the mix.  Did n
 Activity Added 50 grams of flour and 50 grams of water.
 
 ### Day 3
-Update: Early morning and overnight the first evidence of a lot of activity
+Update: Early morning and overnight the first evidence of a lot of activity.  About 50% volume increase (see sticker).
 
 Pictures:
 ![](images/day3_1.jpg)
