@@ -15,5 +15,5 @@ Update: Early morning and overnight the first evidence of a lot of activity.  Ab
 Pictures:
 
 
-<img src="images/day3_1.jpg" width="400" alt="Homemade">
-<img src="images/day3_2.jpg" width="400" alt="Homemade">
+<img src="images/day3_1.jpg" width="200" alt="Homemade">
+<img src="images/day3_2.jpg" width="200" alt="Homemade">
