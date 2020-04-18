@@ -1,5 +1,7 @@
 ## Project Sourdough
 
+## Batch 1
+
 ### Day 1
 Update:
 
@@ -23,6 +25,18 @@ Pictures:
 Update: Dumped half the produce and fried it in a pan.  Added 50 grams of flour and 40 grams of water and then stirred everything up.
 
 Pictures:
+
 <img src="images/day3_after_feed_1.jpg" width="200" alt="Homemade">
 <img src="images/day3_after_feed_2.jpg" width="200" alt="Homemade">
 <img src="images/day3_fried_waste.jpg" width="200" alt="Homemade">
+
+## Batch 2
+
+### Day 1
+Previous batch dod not do much anymore - I think I made the mistake of putting too much water in.  It had a our smell and their was not much bubbly activity at all.
+
+Pictures:
+
+<img src="images/new_day_1.1.jpg" width="200" alt="Homemade">
+<img src="images/new_day_1.2.jpg" width="200" alt="Homemade">
+<img src="images/new_day_1.3.jpg" width="200" alt="Homemade">
