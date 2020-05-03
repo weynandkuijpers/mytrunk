@@ -33,7 +33,7 @@ Pictures:
 ## Batch 2
 
 ### Day 1
-Previous batch dod not do much anymore - I think I made the mistake of putting too much water in.  It had a our smell and their was not much bubbly activity at all.
+Previous batch did not do much anymore - I think I made the mistake of putting too much water in.  It had a sour smell and there was not much bubbly activity at all.
 
 Pictures:
 
