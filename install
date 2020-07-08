@@ -25,6 +25,7 @@ brew cask install telegram
 
 # Needs to have the unknown software check set to allow.
 brew cask install virtualbox
+brew cask install balenaetcher
 
 # create bootable install usb 
 sudo /Applications/Install\ macOS\ Catalina.app/Contents/Resources/createinstallmedia --volume /Volumes/MyVolume
