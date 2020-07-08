@@ -27,4 +27,5 @@ brew cask install telegram
 brew cask install virtualbox
 
 # create bootable install usb 
-#sudo /Applications/Install\ macOS\ Catalina.app/Contents/Resources/createinstallmedia — volume /Volumes/USBdrive — /Applications/Install\ macOS\ Catalina.app
+sudo /Applications/Install\ macOS\ Catalina.app/Contents/Resources/createinstallmedia --volume /Volumes/MyVolume
+
