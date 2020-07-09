@@ -1,16 +1,12 @@
 #!/bin/bash
 
 # Install homebrew
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+#/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 
 
 #install Brave + Chrome browsers
 brew cask install brave=browser
 brew cask install google-chrome
-
-# Install Zoom + does not work needs to be de-installed and installed manually
-brew cask install zoom
-brew cask remove zoom
 
 # Install docker
 brew cask install docker
