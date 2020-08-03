@@ -23,24 +23,24 @@ do
 
 	for num in {1..5}
 	do
-		./mc cp $LARGE $BUCKET/large.$num
+		mc cp $LARGE $BUCKET/large.$num
 		DSIZE=$(($DSIZE+LARGES))
 		echo "LARGE $num done, trasnferred: $DSIZE"
 		for numtoo in {1..5}
 			do
-			./mc cp $MEDIUM $BUCKET/medium.$numtoo 
+			mc cp $MEDIUM $BUCKET/medium.$numtoo 
 			DSIZE=$(($DSIZE+MEDIUMS))
 			echo "MEDIUM $numtoo done, trasnferred: $DSIZE"
 			for numtree in {1..5}
 			do
-				./mc cp $SMALL $BUCKET/small.$numtree
+				mc cp $SMALL $BUCKET/small.$numtree
 				DSIZE=$(($DSIZE+SMALLS))
 				echo "SMALL $numtree done, trasnferred: $DSIZE"
 			done
 		done
 
 	done
-	./mc cp $LARGE $BUCKET/large.$num 
+	mc cp $LARGE $BUCKET/large.$num 
 	DSIZE=$(($DSIZE+LARGES))
 	echo "LARGE $num done, trasnferred: $DSIZE"
 	echo "ROUND: $round done"
