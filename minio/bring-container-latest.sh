@@ -4,6 +4,7 @@ apt update
 apt upgrade -y
 apt install git -y
 apt install bmon -y
+apt install tmux -y
 mkdir $HOME/opt
 cd $HOME/opt
 git clone https://github.com/weynandkuijpers/mytrunk.git
