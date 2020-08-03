@@ -10,3 +10,4 @@ git clone https://github.com/weynandkuijpers/mytrunk.git
 cd mytrunk/minio
 wget https://dl.min.io/client/mc/release/linux-amd64/mc
 chmod +x mc
+PATH=$PATH:`pwd`
