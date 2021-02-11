@@ -1,4 +1,4 @@
-# Home farmer network setup.
+# The "Home farmer" network setup.
 
 So you have become a farmer. And you have bought a shiny new noded to host the Threefold Grid and provide for services in that grid. Cool, let's get you started
 
@@ -10,8 +10,8 @@ This document will handle the network setup/requirements for a home deployment. 
 
 What you'll need.
 
-  - a link to the Internet with appropriate bandwith for the services you want to provide
-  - a router that connects your internal network with the Internet Uplink
+  - a link to the Internet with appropriate bandwith for the services you want to provide. Typically this will come from a telecom operator in you reagion and it will be in the form of a consumer access product 
+  - a set-top box (router) that connects your home/business with a Internet Uplink to the internet.
   - one or more switches in function of the number of nodes you need to connect
   - some knowledge about how to configure your switch and router
 
@@ -21,7 +21,7 @@ What you'll need.
 
 ```
 +                                   
-|                                       
+|           Set-Top box                            
 |          +-------------------+          
 |          |  Router           |
 +----------+  NAT FW           |
@@ -29,8 +29,8 @@ What you'll need.
            |  DHCP Server      |
            +-+-----------------+   
              |         
+             |  Nertwork connection 1 (On Set-Top box and Nodes)       
              |         
-      NIC 1  |         
            +-+-----------------+ 
            | NODES             +-+  
            |                   | +-+
