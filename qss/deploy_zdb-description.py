@@ -18,7 +18,7 @@ tmp_sus=0
 # select the largest pool information to pay-as-you-go for the reservation
 for pool in my_pools:
     if pool.cus >= tmp_cus or pool.sus >= tmp_sus:
-        if pool.cus != 0 and pool.sus  != 0:
+        if pool.cus != 0 and pool.sus != 0:
             pool_id=pool.pool_id
         else:
             print('Cannot use pool_id:', pool_id,' One of the required capacity units is empty')
@@ -26,30 +26,17 @@ for pool in my_pools:
     tmp_sus=pool.sus 
 
 print('Selected pool to deploy ZDB\'s:', pool_id)
+my_pool=zos.pools.get(pool_id)
 
 # check my identity (so see if I own the pool)
-j.core.identity.me
+# j.core.identity.me
 
-''' Pool(
-  pool_id=18714,
-  cus=1176172.0,
-  sus=2592000.0,
-  ipv4us=0.0,
-  node_ids=['A54PL8EPQHC1SefcFcnLKaqurw8nBNTSFsFriYowYP1a', 'FbMBh3gGX5WLkcVgvxtTZ32ZiQwoAUUfcDvdMp8fLP8H', 'Gx8Lq33vothCc3WnbbNeZCMTvfTbGMDtXTdyKRSGHSkp', 'GPQozt2DKzYdNTC9BfHHDkURHQnwNpLWpHDLbctZUHaJ', 'muf6pkx1SvNruakJ4D7kkFtkqazArjd3gYtRX9N1pRd', 'FVaQXnZYQWs5a7BJuBcMseWuWLZvHmSbqE5wimw8mApi', 'G5PZcQ64oAyRfyc5cCH9gW7XZnGorSbmCujLAou3CdJo', '3BwqMRqHzkej7ij2VZzTfUNJgMLERBT6j665N9wQewJo', 'ARwVmHADgk6ih1PCEmk42qrmM65zz5suz3wrFgLdGptv', 'FcgAbtD8HMsAeLPQVkhyNDXpfLXFv3cPsWHYv5Xawug9', 'HmRVQr66C1jhGNKMkpdu3RpSJXSpPkBWZTw8XS33AvG4', 'HMH2bbPQvXU1QxbECDEtqzP7sf5VtFxQY7UAKeRVhjQv', 'kwFN1Jj5nhbbi5NkCinafUX2SBgQ6VNvC7kKRCBbHBs', '8mqmvpRXgyE6coQKG1pHecpKaL1NGZo8nJ4ricvGJ6a8', 'CX13eZPrZcyaUK2EaiPuyiLKoyJfL2WL5P3s2QCU5Qem', 'BPkUGAiTMxEAJEFFpaJAQAvoy3ptKTCohEPKS3g3ANuG'],
-  last_updated=datetime.datetime(2021, 4, 16, 5, 20, tzinfo=tzutc()),
-  active_cu=1.0,
-  active_su=0.0,
-  active_ipv4=0.0,
-  empty_at=1619726572,
-  customer_tid=2077,
-  active_workload_ids=[32617, 32621, 32620, 33267, 33269, 33268, 33275, 33278, 33276, 33277, 33281]
-'''
+zdb_nodes=[]
 
-#for node in pool.node_ids: 
-#     print(node)    
-
-#zdb_node=pool.node_ids[0]                                                                                                                 
-#print(zdb_node) 
+# list the available nodes in this particular pool
+for node in my_pool:
+    print(node)    
+#    zdb_node=pool.node_ids[0]
 
 #zdb_deployed=zos.zdb.create(node_id='FbMBh3gGX5WLkcVgvxtTZ32ZiQwoAUUfcDvdMp8fLP8H', pool_id=pool.pool_id, password='supersecret', disk_type='HDD', size=256, public='TRUE', mode='seq')
 
