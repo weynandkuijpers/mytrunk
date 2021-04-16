@@ -9,7 +9,7 @@ import os
 
 
 
-def select_working_pool(pools)
+def select_working_pool(pools):
     tmp_cus=0
     tmp_sus=0
 
@@ -24,11 +24,9 @@ def select_working_pool(pools)
         tmp_sus=pool.sus 
     print('Selected pool to deploy ZDB\'s:', pool_id)
     my_pool=zos.pools.get(pool_id)
-return(my_pool)
+    return(my_pool)
 
-__main__
-
-#init
+def main():
 
 # load the SAL to make/break reservation
 zos=j.sals.zos.get() 
