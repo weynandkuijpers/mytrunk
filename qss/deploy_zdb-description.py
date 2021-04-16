@@ -23,8 +23,32 @@ def select_working_pool(pools):
         tmp_cus=pool.cus
         tmp_sus=pool.sus 
     print('Selected pool to deploy ZDB\'s:', pool_id)
+    
+    return(pool_id)
+
+def deploy_zdbs(pool_id, zdb_password, zdb_size, zdb_mode, debug_on)
+
+    # get all the data for the selected capacity pool
     my_pool=zos.pools.get(pool_id)
-    return(my_pool)
+    # for each node in the pool 
+    for node in my_pool.node_ids:
+        zdb_deploy=zos.zdb.create(node_id=node, \
+            pool_id=my_pool.pool_id, \
+            password=zdb_password, \
+            disk_type='HDD', \
+            size=zdb_size, \
+            public='TRUE', \
+            mode=zdb_mode)
+        if debug_on == 1:
+            print(zdb_deploy)
+            input('Data formatted for deployment.....')
+        id=zos.workloads.deploy(zdb_deploy) 
+        result_workload = zos.workloads.get(id) 
+        if debug_on == 1:
+            input('Workload result:')
+            print(result_workload)
+            input('Decomission workload?')
+        zos.workloads.decomission(id)
 
 def main():
 
@@ -32,32 +56,18 @@ def main():
 zos=j.sals.zos.get() 
 my_pools=zos.pools.list()
 
-pool_id=select_working_pool(my_pools)
+number_of_zdbs=input('How many ZDB\'s would you like to deploy? :')
+zdb_password=input('What password do I encrypt and deploy? :')
+zdb_size=input('What is the size of the ZDB\'s [GB]: ')
+zdb_mode=input('What mode are the ZDS\'s in [\'user'', \'seq\']: ')
+
+#pool_id=select_working_pool(my_pools)
+# deploy_zdbs
 
 # select capacity pool for deployment
 
-
-zdb_nodes=[]
-
-
-# list the available nodes in this particular pool
-for node in my_pool.node_ids:
-    print(node)
-    zdb_deploy=zos.zdb.create(node_id=node, pool_id=my_pool.pool_id, password='supersecret', disk_type='HDD', size=256, public='TRUE', mode='seq')
-    print(zdb_deploy)
-    input('Data formatted for deployment.....')
-    id=zos.workloads.deploy(zdb_deploy) 
-    input('New deployment?')
-    print(id)
-    result_workload = zos.workloads.get(id) 
-    input('Workload result:')
-    print(result_workload)
-    input('Decomission workload?')
-    zos.workloads.decomission(id)
-    answer=input('Done, next?')  
-    if answer == ('y' or 'Y'):
-        break
-
+if __name__ == '__main__':
+    main()
 
 
 
