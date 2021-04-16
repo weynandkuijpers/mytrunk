@@ -9,10 +9,10 @@ import os
 
 class get_input():
     def __init__(self):
-	    self.zdb_number=3
-	    self.zdb_password = 'supersecret'
-	    self.zdb_size = 256
-	    self.zdb_mode = 'seq'
+	    self.zdb_number=input('Number of ZDB\'s :')
+	    self.zdb_password = input('Number of ZDB\'s :')
+	    self.zdb_size = input('Number of ZDB\'s :')
+	    self.zdb_mode = input('Number of ZDB\'s :')
 
 def select_working_pool(pools):
     tmp_cus=0
