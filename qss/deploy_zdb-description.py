@@ -13,7 +13,7 @@ class get_intput():
 	    self.zdb_password = input('What password do I encrypt and deploy? :')
 	    self.zdb_size = input('What is the size of the ZDB\'s [GB]: ')
 	    self.zdb_mode = input('What mode are the ZDS\'s in [\'user'', \'seq\']: ')
-		return(self)
+        return(self)
 
 def select_working_pool(pools):
     tmp_cus=0
