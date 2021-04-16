@@ -7,6 +7,13 @@ from jumpscale.loader import j
 import os
 # from  jumpscale.clients.stellar.exceptions import UnAuthorized
 
+class get_intput():
+    def start_values(self)
+        self.number_of_zdbs=input('How many ZDB\'s would you like to deploy? :')
+	    self.zdb_password=input('What password do I encrypt and deploy? :')
+	    self.zdb_size=input('What is the size of the ZDB\'s [GB]: ')
+	    self.zdb_mode=input('What mode are the ZDS\'s in [\'user'', \'seq\']: ')
+    return(self)
 
 def select_working_pool(pools):
     tmp_cus=0
@@ -55,16 +62,17 @@ def main():
 	zos=j.sals.zos.get() 
 	my_pools=zos.pools.list()
 
-	number_of_zdbs=input('How many ZDB\'s would you like to deploy? :')
-	zdb_password=input('What password do I encrypt and deploy? :')
-	zdb_size=input('What is the size of the ZDB\'s [GB]: ')
-	zdb_mode=input('What mode are the ZDS\'s in [\'user'', \'seq\']: ')
-
+    new=get_intput()
+    
+    print(new.number_of_zdbs)
+    print(new.zdb_size)
+    
 	#pool_id=select_working_pool(my_pools)
 	# deploy_zdbs
 
 	# select capacity pool for deployment
     #hello
+
 if __name__ == '__main__':
     main()
 
