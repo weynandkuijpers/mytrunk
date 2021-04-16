@@ -34,7 +34,7 @@ my_pool=zos.pools.get(pool_id)
 zdb_nodes=[]
 
 # list the available nodes in this particular pool
-for node in my_pool:
+for node in my_pool.node_ids:
     print(node)    
 #    zdb_node=pool.node_ids[0]
 
