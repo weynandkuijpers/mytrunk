@@ -13,7 +13,7 @@ class get_intput():
 	    self.zdb_password = input('What password do I encrypt and deploy? :')
 	    self.zdb_size = input('What is the size of the ZDB\'s [GB]: ')
 	    self.zdb_mode = input('What mode are the ZDS\'s in [\'user'', \'seq\']: ')
-    return(self)
+		return(self)
 
 def select_working_pool(pools):
     tmp_cus=0
@@ -62,10 +62,10 @@ def main():
 	zos=j.sals.zos.get() 
 	my_pools=zos.pools.list()
 
-    new=get_intput()
+	new=get_intput()
     
-    print(new.number_of_zdbs)
-    print(new.zdb_size)
+	print(new.number_of_zdbs)
+	print(new.zdb_size)
 
 	#pool_id=select_working_pool(my_pools)
 	# deploy_zdbs
