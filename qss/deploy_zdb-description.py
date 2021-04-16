@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 # pylint: disable=no-value-for-parameter
 
-import click
+# import click
 from jumpscale.loader import j
-import stellar_sdk
+# import stellar_sdk
 import os
-from  jumpscale.clients.stellar.exceptions import UnAuthorized
+# from  jumpscale.clients.stellar.exceptions import UnAuthorized
 
 # load the SAL to make/break reservation
 zos=j.sals.zos.get() 
@@ -28,21 +28,27 @@ for pool in my_pools:
 print('Selected pool to deploy ZDB\'s:', pool_id)
 my_pool=zos.pools.get(pool_id)
 
-# check my identity (so see if I own the pool)
-# j.core.identity.me
-
 zdb_nodes=[]
 
 # list the available nodes in this particular pool
 for node in my_pool.node_ids:
-    print(node)    
-#    zdb_node=pool.node_ids[0]
+    print(node)
+    zdb_deploy=zos.zdb.create(node_id=node, pool_id=my_pool, password='supersecret', disk_type='HDD', size=256, public='TRUE', mode='seq')
+    print(zdb_deploy)
+    input('Data formatted for deployment.....')
+    id=zos.workloads.deploy(zdb_deployed) 
+    input('New deployment:', id)
+    result_workload = zos.workloads.get(id) 
+    input('Workload result:'. result_workload)
+    input('Decomission workload?')
+    zos.workloads.decomission(id)
+    answer=input('Done, next?')  
+    if answer = ('y' or 'Y'):
+        break
 
-#zdb_deployed=zos.zdb.create(node_id='FbMBh3gGX5WLkcVgvxtTZ32ZiQwoAUUfcDvdMp8fLP8H', pool_id=pool.pool_id, password='supersecret', disk_type='HDD', size=256, public='TRUE', mode='seq')
+#print(pool.active_su)
 
-#id=zos.workloads.deploy(zdb_deployed) 
-#result_workload = zos.workloads.get(id) 
-#print(result_workload)                                                                                                                    
+#zos.workloads.decomission(33312)  
 
 '''ZdbNamespace(
   id=33312,
