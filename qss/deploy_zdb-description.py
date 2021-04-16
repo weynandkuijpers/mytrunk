@@ -9,11 +9,10 @@ import os
 
 class get_intput():
     def start_values(self):
-	    self.number_of_zdbs=input('How many ZDB\'s would you like to deploy? :')
-	    self.zdb_password = input('What password do I encrypt and deploy? :')
-	    self.zdb_size = input('What is the size of the ZDB\'s [GB]: ')
-	    self.zdb_mode = input('What mode are the ZDS\'s in [\'user'', \'seq\']: ')
-        return(self)
+	    self.number_of_zdbs=3
+	    self.zdb_password = 'supersecret'
+	    self.zdb_size = 256
+	    self.zdb_mode = 'seq'
 
 def select_working_pool(pools):
     tmp_cus=0
