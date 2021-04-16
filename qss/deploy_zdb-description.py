@@ -8,11 +8,11 @@ import os
 # from  jumpscale.clients.stellar.exceptions import UnAuthorized
 
 class get_intput():
-    def start_values(self)
-        self.number_of_zdbs=input('How many ZDB\'s would you like to deploy? :')
-	    self.zdb_password=input('What password do I encrypt and deploy? :')
-	    self.zdb_size=input('What is the size of the ZDB\'s [GB]: ')
-	    self.zdb_mode=input('What mode are the ZDS\'s in [\'user'', \'seq\']: ')
+    def start_values(self):
+	self.number_of_zdbs=input('How many ZDB\'s would you like to deploy? :')
+	self.zdb_password = input('What password do I encrypt and deploy? :')
+	self.zdb_size = input('What is the size of the ZDB\'s [GB]: ')
+	self.zdb_mode = input('What mode are the ZDS\'s in [\'user'', \'seq\']: ')
     return(self)
 
 def select_working_pool(pools):
