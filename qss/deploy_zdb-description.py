@@ -12,15 +12,20 @@ zos=j.sals.zos.get()
 
 my_pools=zos.pools.list()
 
+tmp_cus=0
+tmp_sus=0
+
 # select the largest pool information to pay-as-you-go for the reservation
 for pool in my_pools:
     if pool.cus >= tmp_cus or pool.sus >= tmp_sus:
         if pool.cus != 0 and pool.sus  != 0:
-            pool_id=pool.id
+            pool_id=pool.pool_id
         else:
-            print('Cannor use pool_id:', pool_id)
+            print('Cannot use pool_id:', pool_id,' One of the required capacity units is empty')
     tmp_cus=pool.cus
     tmp_sus=pool.sus 
+
+print('Selected pool to deploy ZDB\'s:', pool_id)
 
 # check my identity (so see if I own the pool)
 j.core.identity.me
