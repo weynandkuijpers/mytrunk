@@ -7,9 +7,9 @@ from jumpscale.loader import j
 import os
 # from  jumpscale.clients.stellar.exceptions import UnAuthorized
 
-class get_intput():
-    def start_values(self):
-	    self.number_of_zdbs=3
+class get_input():
+    def __init__(self):
+	    self.zdb_number=3
 	    self.zdb_password = 'supersecret'
 	    self.zdb_size = 256
 	    self.zdb_mode = 'seq'
@@ -61,10 +61,11 @@ def main():
 	zos=j.sals.zos.get() 
 	my_pools=zos.pools.list()
 
-	new=get_intput()
-    
-	print(new.number_of_zdbs)
+	new=get_input()
+	print(new.zdb_number)
+	print(new.zdb_password)
 	print(new.zdb_size)
+	print(new.zdb_mode)
 
 	#pool_id=select_working_pool(my_pools)
 	# deploy_zdbs
