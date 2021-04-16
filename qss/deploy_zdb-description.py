@@ -8,7 +8,6 @@ import os
 # from  jumpscale.clients.stellar.exceptions import UnAuthorized
 
 
-
 def select_working_pool(pools):
     tmp_cus=0
     tmp_sus=0
@@ -26,7 +25,7 @@ def select_working_pool(pools):
     
     return(pool_id)
 
-def deploy_zdbs(pool_id, zdb_password, zdb_size, zdb_mode, debug_on)
+def deploy_zdbs(pool_id, zdb_password, zdb_size, zdb_mode, debug_on):
 
     # get all the data for the selected capacity pool
     my_pool=zos.pools.get(pool_id)
@@ -52,19 +51,19 @@ def deploy_zdbs(pool_id, zdb_password, zdb_size, zdb_mode, debug_on)
 
 def main():
 
-# load the SAL to make/break reservation
-zos=j.sals.zos.get() 
-my_pools=zos.pools.list()
+	# load the SAL to make/break reservation
+	zos=j.sals.zos.get() 
+	my_pools=zos.pools.list()
 
-number_of_zdbs=input('How many ZDB\'s would you like to deploy? :')
-zdb_password=input('What password do I encrypt and deploy? :')
-zdb_size=input('What is the size of the ZDB\'s [GB]: ')
-zdb_mode=input('What mode are the ZDS\'s in [\'user'', \'seq\']: ')
+	number_of_zdbs=input('How many ZDB\'s would you like to deploy? :')
+	zdb_password=input('What password do I encrypt and deploy? :')
+	zdb_size=input('What is the size of the ZDB\'s [GB]: ')
+	zdb_mode=input('What mode are the ZDS\'s in [\'user'', \'seq\']: ')
 
-#pool_id=select_working_pool(my_pools)
-# deploy_zdbs
+	#pool_id=select_working_pool(my_pools)
+	# deploy_zdbs
 
-# select capacity pool for deployment
+	# select capacity pool for deployment
 
 if __name__ == '__main__':
     main()
