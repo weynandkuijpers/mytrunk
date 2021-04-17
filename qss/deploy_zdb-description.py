@@ -72,10 +72,10 @@ def main():
     zbd_sizing=get_input()
     deploy_zdbs(my_pool, zbd_sizing, 0)
 
-    print('Number: ', zdb_sizing.number)
-    print('Password: ', zdb_sizing.password)
-    print('Size: ', zdb_sizing.size)
-    print('Mode :', zdb_sizing.mode)
+    print('Number: ', zdb_sizing.zdb_number)
+    print('Password: ', zdb_sizing.zdb_password)
+    print('Size: ', zdb_sizing.zdb_size)
+    print('Mode :', zdb_sizing.zdb_mode)
 
 	#pool_id=select_working_pool(my_pools)
 	# deploy_zdbs
@@ -85,9 +85,7 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-
-
+    
 # refresh the infromaiton in the pool and print it.
 #ipool=zos.pools.get(18714)
 #print(pool.active_su)
