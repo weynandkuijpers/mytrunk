@@ -69,8 +69,8 @@ def main():
     my_pool=zos.pools.get(deploy_pool)   
     # 'deploy_pool' now has the capacity pool to deploy ZDB's in.
     # get input for how many and sizing for the ZDB deployment
-    zbd_sizing=get_input()
-    deploy_zdbs(my_pool, zbd_sizing, 0)
+    zdb_sizing=get_input()
+    deploy_zdbs(my_pool, zdb_sizing, 0)
 
     print('Number: ', zdb_sizing.zdb_number)
     print('Password: ', zdb_sizing.zdb_password)
