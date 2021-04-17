@@ -70,7 +70,7 @@ def main():
     # 'deploy_pool' now has the capacity pool to deploy ZDB's in.
     # get input for how many and sizing for the ZDB deployment
     zbd_sizing=get_input()
-    deploy_zdbs(deploy_pool, zbd_sizing, 0)
+    deploy_zdbs(my_pool, zbd_sizing, 0)
 
     print('Number: ', zdb_sizing.number)
     print('Password: ', zdb_sizing.password)
