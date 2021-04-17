@@ -30,16 +30,15 @@ def select_working_pool(my_pools):
         tmp_sus=pool.sus 
     return(pool_id)
 
-def deploy_zdbs(pool_id, input, debug_on):
+def deploy_zdbs(pool, info, debug_on):
     # local temp data storage
     answer=''
 
-    # get all the data for the selected capacity pool
-    my_pool=zos.pools.get(pool_id)
+
     # for each node in the pool 
-    for node in my_pool.node_ids:
+    for node in pool.node_ids:
         zdb_deploy=zos.zdb.create(node_id=node, \
-            pool_id=pool_id, \
+            pool_id=pool.pool_id, \
             password=info.zdb_password, \
             disk_type='HDD', \
             size=info.zdb_size, \
@@ -66,7 +65,8 @@ def main():
     # select the pool with the most cus / sus available for deployment
     my_pools=zos.pools.list()
     deploy_pool=select_working_pool(my_pools)
-    
+     # get all the data for the selected capacity pool
+    my_pool=zos.pools.get(deploy_pool)   
     # 'deploy_pool' now has the capacity pool to deploy ZDB's in.
     # get input for how many and sizing for the ZDB deployment
     zbd_sizing=get_input()
