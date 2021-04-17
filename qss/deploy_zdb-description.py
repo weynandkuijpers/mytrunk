@@ -13,68 +13,68 @@ class get_input():
 	    self.zdb_password = input('ZDB password :')
 	    self.zdb_size = input('ZDB size :')
 	    self.zdb_mode = input('ZDB mode :')
-    
-    def calculate_something(size):
-        self.zdb_size_gb = size * 1024
-        print('In method: ',self.zdb_size_gb)
 
 def select_working_pool(my_pools):
-    
-    # local temp store
+    # local temp data storage
     tmp_cus=0
     tmp_sus=0
 
     # select the largest pool information to pay-as-you-go for the reservation
     for pool in my_pools:
-        if pool.cus >= tmp_cus or pool.sus >= tmp_sus:
-            if pool.cus != 0 and pool.sus != 0:
+        if (pool.cus >= tmp_cus) or (pool.sus >= tmp_sus):
+            if (pool.cus != 0) and (pool.sus != 0):
                 pool_id=pool.pool_id
             else:
                 print('Cannot use pool_id:', pool_id,' One of the required capacity units is empty')
         tmp_cus=pool.cus
         tmp_sus=pool.sus 
-    print('Selected pool to deploy ZDB\'s:', pool_id)
-    
     return(pool_id)
 
-def deploy_zdbs(pool_id, zdb_password, zdb_size, zdb_mode, debug_on):
+def deploy_zdbs(pool_id, input, debug_on):
+    # local temp data storage
+    answer=''
 
     # get all the data for the selected capacity pool
     my_pool=zos.pools.get(pool_id)
     # for each node in the pool 
     for node in my_pool.node_ids:
         zdb_deploy=zos.zdb.create(node_id=node, \
-            pool_id=my_pool.pool_id, \
-            password=zdb_password, \
+            pool_id=pool_id, \
+            password=info.zdb_password, \
             disk_type='HDD', \
-            size=zdb_size, \
+            size=info.zdb_size, \
             public='TRUE', \
-            mode=zdb_mode)
+            mode=info.zdb_mode)
         if debug_on == 1:
             print(zdb_deploy)
-            input('Data formatted for deployment.....')
-        id=zos.workloads.deploy(zdb_deploy) 
-        result_workload = zos.workloads.get(id) 
+            input('Ready?')
+        # id=zos.workloads.deploy(zdb_deploy) 
+        # result_workload = zos.workloads.get(id) 
         if debug_on == 1:
-            input('Workload result:')
-            print(result_workload)
-            input('Decomission workload?')
-        zos.workloads.decomission(id)
+            print('Workload result:', result_workload)
+            input()
+            answer=input('Decomission workload?')
+            if answer == ('y' or 'Y'): 
+                zos.workloads.decomission(id)
+                print('Workload ', id, ' decommissioned')
 
 def main():
 
     # load the SAL to make/break reservation
     zos=j.sals.zos.get() 
 	
-    # run rhw program
+    # select the pool with the most cus / sus available for deployment
     my_pools=zos.pools.list()
-    select_working_pool(my_pools)
-    new=get_input()
+    deploy_pool=select_working_pool(my_pools)
+    
+    # 'deploy_pool' now has the capacity pool to deploy ZDB's in.
+    # get input for how many and sizing for the ZDB deployment
+    zbd_sizing=get_input()
+    deploy_zdbs(deploy_pool, zbd_sizing, 0)
 
     print('Number: ',new.zdb_number)
     print('Password: ',new.zdb_password)
     print('Size: ',new.zdb_size)
-    print('Size (DB):',new.calculate_something(new.zdb_size))
     print('Mode :',new.zdb_mode)
 
 	#pool_id=select_working_pool(my_pools)
