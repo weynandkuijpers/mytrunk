@@ -72,10 +72,10 @@ def main():
     zbd_sizing=get_input()
     deploy_zdbs(deploy_pool, zbd_sizing, 0)
 
-    print('Number: ',new.zdb_number)
-    print('Password: ',new.zdb_password)
-    print('Size: ',new.zdb_size)
-    print('Mode :',new.zdb_mode)
+    print('Number: ', zdb_sizing.number)
+    print('Password: ', zdb_sizing.password)
+    print('Size: ', zdb_sizing.size)
+    print('Mode :', zdb_sizing.mode)
 
 	#pool_id=select_working_pool(my_pools)
 	# deploy_zdbs
