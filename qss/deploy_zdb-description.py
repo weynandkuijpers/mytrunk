@@ -10,11 +10,13 @@ import os
 class get_input():
     def __init__(self):
 	    self.zdb_number=input('Number of ZDB\'s :')
-	    self.zdb_password = input('Number of ZDB\'s :')
-	    self.zdb_size = input('Number of ZDB\'s :')
-	    self.zdb_mode = input('Number of ZDB\'s :')
+	    self.zdb_password = input('ZDB password :')
+	    self.zdb_size = input('ZDB size :')
+	    self.zdb_mode = input('ZDB more :')
 
 def select_working_pool(pools):
+    
+    # local temp store
     tmp_cus=0
     tmp_sus=0
 
@@ -59,9 +61,12 @@ def main():
 
 	# load the SAL to make/break reservation
 	zos=j.sals.zos.get() 
-	my_pools=zos.pools.list()
-
+	
+    #
+    my_pools=zos.pools.list()
+    select_working_pool(my_pools)
 	new=get_input()
+
 	print(new.zdb_number)
 	print(new.zdb_password)
 	print(new.zdb_size)
