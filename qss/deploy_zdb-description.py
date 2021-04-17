@@ -59,18 +59,18 @@ def deploy_zdbs(pool_id, zdb_password, zdb_size, zdb_mode, debug_on):
 
 def main():
 
-	# load the SAL to make/break reservation
-	zos=j.sals.zos.get() 
+    # load the SAL to make/break reservation
+    zos=j.sals.zos.get() 
 	
     # run rhw program
     my_pools=zos.pools.list()
     select_working_pool(my_pools)
     new=get_input()
 
-	print(new.zdb_number)
-	print(new.zdb_password)
-	print(new.zdb_size)
-	print(new.zdb_mode)
+    print(new.zdb_number)
+    print(new.zdb_password)
+    print(new.zdb_size)
+    print(new.zdb_mode)
 
 	#pool_id=select_working_pool(my_pools)
 	# deploy_zdbs
