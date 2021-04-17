@@ -14,8 +14,8 @@ class get_input():
 	    self.zdb_size = input('ZDB size :')
 	    self.zdb_mode = input('ZDB mode :')
     
-    def calculate_something(self):
-        self.zdb_size_gb = self.zdb_size * 1024
+    def calculate_something(size):
+        self.zdb_size_gb = size * 1024
 
 def select_working_pool(my_pools):
     
