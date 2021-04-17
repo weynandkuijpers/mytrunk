@@ -14,7 +14,7 @@ class get_input():
 	    self.zdb_size = input('ZDB size :')
 	    self.zdb_mode = input('ZDB more :')
 
-def select_working_pool(pools):
+def select_working_pool(my_pools):
     
     # local temp store
     tmp_cus=0
