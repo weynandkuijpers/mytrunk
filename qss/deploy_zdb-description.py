@@ -73,7 +73,7 @@ def main():
     print('Number: ',new.zdb_number)
     print('Password: ',new.zdb_password)
     print('Size: ',new.zdb_size)
-    print('Size (DB):',new.calculate_something)
+    print('Size (DB):',new.calculate_something(new.zdb_size))
     print('Mode :',new.zdb_mode)
 
 	#pool_id=select_working_pool(my_pools)
