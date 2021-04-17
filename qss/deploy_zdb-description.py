@@ -62,10 +62,10 @@ def main():
 	# load the SAL to make/break reservation
 	zos=j.sals.zos.get() 
 	
-    #
+    # run rhw program
     my_pools=zos.pools.list()
     select_working_pool(my_pools)
-	new=get_input()
+    new=get_input()
 
 	print(new.zdb_number)
 	print(new.zdb_password)
