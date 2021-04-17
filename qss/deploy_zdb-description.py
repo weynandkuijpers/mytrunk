@@ -16,6 +16,7 @@ class get_input():
     
     def calculate_something(size):
         self.zdb_size_gb = size * 1024
+        print('In method: ',self.zdb_size_gb)
 
 def select_working_pool(my_pools):
     
