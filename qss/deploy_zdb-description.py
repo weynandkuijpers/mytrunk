@@ -33,7 +33,7 @@ def select_working_pool(my_pools):
 def deploy_zdbs(pool, info, debug_on):
     # local temp data storage
     answer=''
-
+    zos=j.sals.zos.get() 
 
     # for each node in the pool 
     for node in pool.node_ids:
@@ -85,7 +85,7 @@ def main():
 
 if __name__ == '__main__':
     main()
-    
+
 # refresh the infromaiton in the pool and print it.
 #ipool=zos.pools.get(18714)
 #print(pool.active_su)
